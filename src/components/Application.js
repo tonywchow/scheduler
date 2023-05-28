@@ -62,6 +62,9 @@ export default function Application(props) {
       })
       .catch((error) => console.log(error));
   }
+
+
+
   const interviewers = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const setDay = (day) => setState((prev) => ({ ...prev, day }));
