@@ -32,7 +32,23 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment,
     };
-    setState({ ...state, appointments });
+
+    // return new Promise((resolve, reject) => {
+    //   axios
+    //     .put(`http://localhost:8001/api/appointments/${id}`, appointment)
+    //     .then((res) => {
+    //       resolve(setState({ ...state, appointments }));
+    //       console.log(res);
+    //     })
+    //     .catch((error) => console.log(error));
+    // });
+    return axios
+      .put(`http://localhost:8001/api/appointments/${id}`, appointment)
+      .then((res) => {
+        setState({ ...state, appointments });
+        console.log(res);
+      })
+      .catch((error) => console.log(error));
   }
   const interviewers = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
