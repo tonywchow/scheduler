@@ -42,7 +42,6 @@ export default function Application(props) {
   }
 
   function cancelInterview(id) {
-    console.log(id);
     const appointment = {
       ...state.appointments[id],
       interview: null,
@@ -57,11 +56,11 @@ export default function Application(props) {
       .delete(`http://localhost:8001/api/appointments/${id}`)
       .then((res) => {
         setState((prev) => ({ ...prev, appointments }));
-        console.log("deleting", res);
       });
   }
 
   const interviewers = getInterviewersForDay(state, state.day);
+  console.log("From getInterviewersForDay", interviewers);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const setDay = (day) => setState((prev) => ({ ...prev, day }));
   const schedule = dailyAppointments.map((appointment) => {
