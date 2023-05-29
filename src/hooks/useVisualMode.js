@@ -5,7 +5,7 @@ export default function useVisualMode(initial) {
 
   function transition(mode, replace = false) {
     if (replace) {
-      return setHistory((prev) => [...prev.slice(0, -1), mode]);
+      return setHistory((prev) => [...prev.slice(0, -1), mode]); //Prev copies the existing array and .slice creates a new array without the last item. Then sets the mode
     }
     setHistory((prev) => [...prev, mode]);
   }
