@@ -36,10 +36,9 @@ export default function Application(props) {
     return axios
       .put(`http://localhost:8001/api/appointments/${id}`, appointment)
       .then((res) => {
-        setState({ ...state, appointments });
+        setState((prev) => ({ ...prev, appointments }));
         console.log("saving", res);
-      })
-      .catch((error) => console.log(error));
+      });
   }
 
   function cancelInterview(id) {
@@ -57,13 +56,10 @@ export default function Application(props) {
     return axios
       .delete(`http://localhost:8001/api/appointments/${id}`)
       .then((res) => {
-        setState({ ...state, appointments });
+        setState((prev) => ({ ...prev, appointments }));
         console.log("deleting", res);
-      })
-      .catch((error) => console.log(error));
+      });
   }
-
-
 
   const interviewers = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
