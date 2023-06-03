@@ -9,23 +9,13 @@ const useApplicationData = () => {
     interviewers: {},
   });
 
-
-  //user creates appointment
-  //using axios sends data to api URL
-  //on success: response from api server
-  //calculate number of spots from response (function)
-  //on error: console.log(error)/transition(ERROR_SAVE)
-
-  //how to calculate the number of spots:
-  //parameters Obj
-  //let space = 0;
-  //state.day === day.name
-  //dayArr = day.appointments  //Array
-  //for(let appointmentID of dayArr) {
-  //if(appointments[appointmentID].interview === null) {
-  //space += 1
-  //return space;
-  //let appointment = { ...appointment, appointment.interview}
+  const dayObjectID = {
+    Monday: 0,
+    Tuesday: 1,
+    Wednesday: 2,
+    Thursday: 3,
+    Friday: 4,
+  };
 
   function updateSpot(obj) {
     let space = 0;
@@ -36,6 +26,7 @@ const useApplicationData = () => {
         dayArr = day.appointments;
       }
     }
+    //Looping through the appointment ID array and confirming if the key value pair in appointments is null
     for (let appointmentID of dayArr) {
       if (obj[appointmentID].interview === null) {
         space += 1;
@@ -43,15 +34,6 @@ const useApplicationData = () => {
     }
     return space;
   }
-
-  let dayObjectID = {
-    Monday: 0,
-    Tuesday: 1,
-    Wednesday: 2,
-    Thursday: 3,
-    Friday: 4,
-  };
-
 
   const apiURLS = {
     GET_DAYS: "http://localhost:8001/api/days",
@@ -74,6 +56,7 @@ const useApplicationData = () => {
       .put(`http://localhost:8001/api/appointments/${id}`, appointment)
       .then((res) => {
         setState((prev) => {
+          //Creating a clone of the latest state and updating values
           let newState = { ...prev };
           newState.appointments[id] = appointment;
           newState.days[dayObjectID[state.day]].spots = updateSpot(
@@ -90,17 +73,23 @@ const useApplicationData = () => {
       interview: null,
     };
 
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
+    // const appointments = {
+    //   ...state.appointments,
+    //   [id]: appointment,
+    // };
 
     return axios
       .delete(`http://localhost:8001/api/appointments/${id}`)
       .then((res) => {
-        // setSpots(spots + 1);
-        // let spotRefresh = updateSpots(1);
-        setState((prev) => ({ ...prev, appointments }));
+        setState((prev) => {
+          //Creating a clone of the latest state and updating values
+          let newState = { ...prev };
+          newState.appointments[id] = appointment;
+          newState.days[dayObjectID[state.day]].spots = updateSpot(
+            newState.appointments
+          );
+          return newState;
+        });
       });
   }
 
