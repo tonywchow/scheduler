@@ -9,6 +9,7 @@ export default function Form(props) {
   const handleCancelClick = () => {
     setInterviewer(null);
     setStudent("");
+    setError("");
     props.onCancel();
   };
 
@@ -21,6 +22,7 @@ export default function Form(props) {
       setError("Please select an interviewer");
       return;
     }
+    setError("");
     props.onSave(student, interviewer);
   }
 
