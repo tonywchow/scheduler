@@ -3,8 +3,6 @@ import "./DayListItem.scss";
 import classNames from "classnames";
 
 export default function DayListItem(props) {
-  //TODO ask mentor about appending classNames is correct
-  // console.log(props);
   const dayClass = classNames("day-list__item", {
     "day-list__item--selected": props.selected,
     "day-list__item--full": props.spots === 0,
@@ -23,7 +21,11 @@ export default function DayListItem(props) {
   }
 
   return (
-    <li onClick={() => props.setDay(props.name)} className={dayClass}>
+    <li
+      onClick={() => props.setDay(props.name)}
+      className={dayClass}
+      data-testid="day"
+    >
       {/* {console.log(dayClass)} */}
       <h2 className="text--regular">{props.name}</h2>
       <h3 className="text--light">{formatSpots(props.spots)}</h3>
