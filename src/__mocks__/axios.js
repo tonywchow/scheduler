@@ -81,4 +81,18 @@ export default {
       });
     }
   }),
+  put: jest.fn(() => {
+    /* Resolve appointments data */
+    return Promise.resolve({
+      status: 204,
+      statusText: "No Content",
+    });
+  }),
+  delete: jest.fn(() => {
+    /* Resolve appointments data */
+    return Promise.resolve({
+      status: 204,
+      statusText: "No Content",
+    });
+  }),
 };
