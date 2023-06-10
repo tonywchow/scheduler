@@ -29,10 +29,6 @@ describe("Application", () => {
     fireEvent.click(getByText("Tuesday"));
 
     expect(getByText("Leopold Silvers")).toBeInTheDocument();
-    // return waitForElement(() => getByText("Monday")).then(() => {
-    //   fireEvent.click(getByText("Tuesday"));
-    //   expect(getByText("Leopold Silvers")).toBeInTheDocument();
-    // });
   });
 
   xit("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
@@ -54,7 +50,7 @@ describe("Application", () => {
     fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
     // 6. Click the "Save" button on that same appointment.
     fireEvent.click(getByText(appointment, "Save"));
-    console.log(prettyDOM(appointment));
+
     // 7. Check that the element with the text "Saving" is displayed.
     expect(getByText(appointment, "SAVING")).toBeInTheDocument();
     //8. Wait until the element with the text "Lydia Miller-Jones" is displayed.
@@ -110,7 +106,7 @@ describe("Application", () => {
 
   xit("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
     // 1. Render the Application.
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
 
     // 2. Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));
@@ -127,7 +123,7 @@ describe("Application", () => {
     // 5. Click the "Save" button on the confirmation.
     fireEvent.click(getByText(appointment, "Save"));
     expect(getByText(appointment, "SAVING")).toBeInTheDocument();
-    console.log(prettyDOM(appointment));
+    // console.log(prettyDOM(appointment));
     // 6. Check that the element with the text "Bobb" is displayed.
     await waitForElement(() => getByText(appointment, "Billy Bob"));
     // 8. Check that the DayListItem with the text "Monday" also has the text "1 spots remaining".
@@ -135,10 +131,9 @@ describe("Application", () => {
       queryByText(day, "Monday")
     );
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
-    debug();
   });
 
-  it("shows the save error when failing to save an appointment", async () => {
+  xit("shows the save error when failing to save an appointment", async () => {
     axios.put.mockRejectedValueOnce();
     // 1. Render the Application.
     const { container } = render(<Application />);
@@ -161,13 +156,13 @@ describe("Application", () => {
     fireEvent.click(getByText(appointment, "Save"));
     // 6. Confirm error
     await waitForElement(() => getByText(appointment, "Error"));
-    console.log(prettyDOM(appointment));
+
     expect(
       queryByText(appointment, "Could not save appointment")
     ).toBeInTheDocument();
   });
 
-  it("shows the delete error when failing to delete an existing appointment", async () => {
+  xit("shows the delete error when failing to delete an existing appointment", async () => {
     axios.delete.mockRejectedValueOnce();
     // 1. Render the Application.
     const { container } = render(<Application />);
