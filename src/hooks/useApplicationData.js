@@ -47,16 +47,25 @@ const useApplicationData = () => {
       ...state.appointments[id],
       interview: { ...interview },
     };
-    // const appointments = {
-    //   ...state.appointments,
-    //   [id]: appointment,
-    // };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
 
     return axios.put(`/api/appointments/${id}`, appointment).then((res) => {
+      // setState((prev) => {
+      //   //Creating a clone of the latest state and updating values
+      //   let newState = { ...prev };
+      //   newState.appointments[id] = appointment;
+      //   newState.days[dayObjectID[state.day]].spots = updateSpot(
+      //     newState.appointments
+      //   );
+      //   return newState;
+      // });
       setState((prev) => {
         //Creating a clone of the latest state and updating values
         let newState = { ...prev };
-        newState.appointments[id] = appointment;
+        newState.appointments = appointments;
         newState.days[dayObjectID[state.day]].spots = updateSpot(
           newState.appointments
         );
@@ -71,16 +80,16 @@ const useApplicationData = () => {
       interview: null,
     };
 
-    // const appointments = {
-    //   ...state.appointments,
-    //   [id]: appointment,
-    // };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
 
     return axios.delete(`/api/appointments/${id}`).then((res) => {
       setState((prev) => {
         //Creating a clone of the latest state and updating values
         let newState = { ...prev };
-        newState.appointments[id] = appointment;
+        newState.appointments = appointments;
         newState.days[dayObjectID[state.day]].spots = updateSpot(
           newState.appointments
         );
