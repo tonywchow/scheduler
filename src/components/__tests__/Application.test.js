@@ -23,7 +23,7 @@ afterEach(cleanup);
 describe("Application", () => {
   it("defaults to Monday and changes the schedule when a new day is selected", async () => {
     const { getByText } = render(<Application />);
-
+    //We are using waitForElement to wait until we are able to get a DOM element with the text "Monday". The waitForElement function returns a promise that resolves when the callback returns a truthy value and rejects after a time out when it cannot find the specified text. When we return a Promise from the test function, the Jest framework knows that the test isn't complete until the promise chain has resolved or rejected.
     await waitForElement(() => getByText("Monday"));
 
     fireEvent.click(getByText("Tuesday"));
@@ -60,12 +60,6 @@ describe("Application", () => {
       queryByText(day, "Monday")
     );
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
-    // //cleanup is not function so we need to remove the appointment added
-    // fireEvent.click(queryByAltText(appointment, "Delete"));
-
-    // // 5. Click the "Confirm" button on the confirmation.
-    // fireEvent.click(queryByText(appointment, "Confirm"));
-    // await waitForElement(() => getByAltText(appointment, "Add"));
   });
 
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {

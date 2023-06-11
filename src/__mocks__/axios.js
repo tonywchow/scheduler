@@ -1,3 +1,4 @@
+//Mock data, resuable static data
 const fixtures = {
   days: [
     {
@@ -54,8 +55,14 @@ const fixtures = {
 };
 
 export default {
+  //Mocking the get function using jest to control the data that is returned from the mock
+  //Mock accepts a url argument because it is replacing the actual axios implementation.
+  //We use the url to route the request to our fixture data and return the resolved promise to match the interface used by axios.
+  //We skip the whole sequence of HTTP operations and resolve a hardcoded version of the response data.
   get: jest.fn((url) => {
     if (url === "/api/days") {
+      /* Resolve days data */
+
       return Promise.resolve({
         status: 200,
         statusText: "OK",
@@ -82,14 +89,14 @@ export default {
     }
   }),
   put: jest.fn(() => {
-    /* Resolve appointments data */
+    /* Resolve change in appointments data */
     return Promise.resolve({
       status: 204,
       statusText: "No Content",
     });
   }),
   delete: jest.fn(() => {
-    /* Resolve appointments data */
+    /* Resolve deleting appointments data */
     return Promise.resolve({
       status: 204,
       statusText: "No Content",
