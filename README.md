@@ -24,12 +24,37 @@ Interview Scheduler is a single-page application (SPA) that allows users to book
 
 !["GIF of Deleting Appointment"](./public/images/Deleting.gif)
 
+### Error Handling
+
+!["GIF of Error Saving"](./public/images/eNew.gif)
+
+!["GIF of Error Deleting"](./public/images/eDelete.gif)
+
+!["GIF of Error Deleting"](./public/images/eEdit.gif)
+
 ## Setup
 
 Install dependencies with `npm install`.
 
-## Running Webpack Development Server
+## Instructions
+
+- Run scheduler-api in it's project folder
 
 ```sh
 npm start
 ```
+
+- Run scheduler in it's project folder
+
+```sh
+npm start
+```
+
+## Dependencies
+
+- axios
+- classnames
+- normalize.css
+- React
+- React-dom
+- React-scripts
