@@ -10,6 +10,8 @@ import {
 
 import useApplicationData from "hooks/useApplicationData";
 
+//Main React Component
+
 export default function Application(props) {
   const { state, setDay, bookInterview, cancelInterview } =
     useApplicationData();
@@ -30,6 +32,8 @@ export default function Application(props) {
       />
     );
   });
+
+//React Application component
 
   return (
     <main className="layout">

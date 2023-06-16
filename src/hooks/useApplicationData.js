@@ -8,7 +8,7 @@ const useApplicationData = () => {
     appointments: {},
     interviewers: {},
   });
-
+  //Helper object with key values pairs to update spots when adding and cancelling appointments
   const dayObjectID = {
     Monday: 0,
     Tuesday: 1,
@@ -35,6 +35,7 @@ const useApplicationData = () => {
     return space;
   }
 
+  //Helper object for axios get request urls
   const apiURLS = {
     GET_DAYS: "/api/days",
     GET_APPOINTMENTS: "/api/appointments",
@@ -42,6 +43,7 @@ const useApplicationData = () => {
   };
   const setDay = (day) => setState((prev) => ({ ...prev, day }));
 
+  //Function to book an interview. Updating the local and server state
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -53,15 +55,6 @@ const useApplicationData = () => {
     };
 
     return axios.put(`/api/appointments/${id}`, appointment).then((res) => {
-      // setState((prev) => {
-      //   //Creating a clone of the latest state and updating values
-      //   let newState = { ...prev };
-      //   newState.appointments[id] = appointment;
-      //   newState.days[dayObjectID[state.day]].spots = updateSpot(
-      //     newState.appointments
-      //   );
-      //   return newState;
-      // });
       setState((prev) => {
         //Creating a clone of the latest state and updating values
         let newState = { ...prev };
@@ -73,7 +66,7 @@ const useApplicationData = () => {
       });
     });
   }
-
+//Function to cancel a interview. Updating the local and server state
   function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
@@ -97,7 +90,7 @@ const useApplicationData = () => {
       });
     });
   }
-
+//useEffect hook to get data from the scheduler-api asynchronously using promises and axios requests
   useEffect(() => {
     Promise.all([
       axios.get(apiURLS.GET_DAYS),

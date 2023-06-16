@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+//This is a custom hook to handle the transition of different views in the appointment component. 
 export default function useVisualMode(initial) {
   const [history, setHistory] = useState([initial]);
 

@@ -3,6 +3,8 @@ import InterviewerListItem from "./InterviewerListItem";
 import "./InterviewerList.scss";
 import PropTypes from "prop-types";
 
+//Component that hold a list of interviews
+
 function InterviewerList(props) {
   const interviewers = props.interviewers.map((interviewer) => {
     return (

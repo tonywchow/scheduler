@@ -1,3 +1,5 @@
+//Function that takes in the state and selected day and returns an array of the appointment objects for the specific day
+
 export function getAppointmentsForDay(state, day) {
   let daysArr = state.days;
   let appointmentArr = [];
@@ -12,6 +14,7 @@ export function getAppointmentsForDay(state, day) {
   return appointmentArr;
 }
 
+//Function that takes in state and interview object and returns an object containing the student and interviewer information
 export function getInterview(state, interview) {
   if (interview === null) {
     return null;
@@ -26,6 +29,8 @@ export function getInterview(state, interview) {
   }
   return interviewerObj;
 }
+
+//Function that takes in the state and selected day and returns an array of the interviewers objects for the specific day
 
 export function getInterviewersForDay(state, day) {
   let daysArr = state.days;

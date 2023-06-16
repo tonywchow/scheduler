@@ -9,7 +9,10 @@ import useVisualMode from "hooks/useVisualMode";
 import Confirm from "./Confirm";
 import Error from "./Error";
 
+//Appointment component that renders the form to add new appointments, edit and delete appointments
+
 export default function Appointment(props) {
+  //Different types of views
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
