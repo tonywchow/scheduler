@@ -117,7 +117,7 @@ describe("Application", () => {
     // 5. Click the "Save" button on the confirmation.
     fireEvent.click(getByText(appointment, "Save"));
     expect(getByText(appointment, "SAVING")).toBeInTheDocument();
-    // console.log(prettyDOM(appointment));
+
     // 6. Check that the element with the text "Bobb" is displayed.
     await waitForElement(() => getByText(appointment, "Billy Bob"));
     // 8. Check that the DayListItem with the text "Monday" also has the text "1 spots remaining".

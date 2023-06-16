@@ -28,7 +28,6 @@ export default function DayListItem(props) {
       className={dayClass}
       data-testid="day"
     >
-      {/* {console.log(dayClass)} */}
       <h2 className="text--regular">{props.name}</h2>
       <h3 className="text--light">{formatSpots(props.spots)}</h3>
     </li>
